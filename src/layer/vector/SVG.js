@@ -48,7 +48,7 @@ export const SVG = Renderer.extend({
 	},
 
 	_destroyContainer() {
-		Renderer.prototype.call(this);
+		Renderer.prototype._destroyContainer.call(this);
 		delete this._rootGroup;
 		delete this._svgSize;
 	},
