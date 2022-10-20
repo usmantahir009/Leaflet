@@ -1,6 +1,5 @@
 import {Renderer} from './Renderer';
 import * as DomUtil from '../../dom/DomUtil';
-import * as DomEvent from '../../dom/DomEvent';
 import Browser from '../../core/Browser';
 import {stamp} from '../../core/Util';
 import {svgCreate, pointsToPath} from './SVG.Util';
@@ -49,9 +48,7 @@ export const SVG = Renderer.extend({
 	},
 
 	_destroyContainer() {
-		DomUtil.remove(this._container);
-		DomEvent.off(this._container);
-		delete this._container;
+		Renderer.prototype.call(this);
 		delete this._rootGroup;
 		delete this._svgSize;
 	},
