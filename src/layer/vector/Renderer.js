@@ -1,8 +1,6 @@
 import {BlanketOverlay} from '../BlanketOverlay';
-import * as DomUtil from '../../dom/DomUtil';
 import * as Util from '../../core/Util';
 import {Bounds} from '../../geometry/Bounds';
-
 
 /*
  * @class Renderer
@@ -33,22 +31,13 @@ export const Renderer = BlanketOverlay.extend({
 	},
 
 	onAdd() {
-		if (!this._container) {
-			this._initContainer(); // defined by renderer implementations
-
-			if (this._zoomAnimated) {
-				DomUtil.addClass(this._container, 'leaflet-zoom-animated');
-			}
-		}
-
-		this.getPane().appendChild(this._container);
-		this._update();
+		BlanketOverlay.prototype.onAdd.call(this);
 		this.on('update', this._updatePaths, this);
 	},
 
 	onRemove() {
+		BlanketOverlay.prototype.onRemove.call(this);
 		this.off('update', this._updatePaths, this);
-		this._destroyContainer();
 	},
 
 	_onZoomEnd() {
